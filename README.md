@@ -1,10 +1,3 @@
-ល្អណាស់ 👍
-សំណួរនេះ **ជាជំហាន professional ពិតៗ** ហើយ—README គឺជារឿងសំខាន់ណាស់សម្រាប់ការចែករំលែកកូដសាធារណៈ (Public Project) 💯
-
-ខាងក្រោមនេះ ខ្ញុំផ្តល់ឲ្យអ្នក៖
-1️⃣ **README.md template (Professional – Ready to use)**
-2️⃣ **ពន្យល់ថាត្រូវដាក់ README ដូចម្តេច (VS Code + GitHub)**
-3️⃣ **គន្លឹះធ្វើឲ្យ Project មើលទៅ Pro ជាងគេ**
 
 ---
 
