@@ -5,44 +5,36 @@ html, body {
   margin: 0;
 }
 
-/* ========== BASE PAGE ========== */
+/* ========== BASE ========== */
 body {
   background: #000;
   overflow: hidden;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   font-family: "Segoe UI", system-ui, sans-serif;
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* ========== HEART CONTAINER ========== */
 #ui {
-  position: relative;
-  width: min(90vw, 520px);
-  height: min(90vw, 520px);
+  position: fixed;
+  inset: 0;
   z-index: 1;
+  pointer-events: none;
+}
 
-  /* subtle breathing glow */
+/* breathing glow */
+#ui {
   animation: breathe 6s ease-in-out infinite;
 }
 
 @keyframes breathe {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px rgba(255,155,191,0.4));
-  }
-  50% {
-    filter: drop-shadow(0 0 18px rgba(255,155,191,0.8));
-  }
+  0%,100% { filter: drop-shadow(0 0 8px rgba(255,155,191,0.4)); }
+  50%     { filter: drop-shadow(0 0 18px rgba(255,155,191,0.8)); }
 }
 
 /* ========== LOVE TEXT ========== */
 .love {
   position: absolute;
+  transform: translate(-50%, -50%);
 
-  /* Gradient text */
   background: linear-gradient(
     90deg,
     #ffb3c6,
@@ -54,13 +46,11 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  font-size: clamp(11px, 1.8vw, 14px);
-  letter-spacing: clamp(1px, 0.4vw, 2px);
+  font-size: clamp(11px, 2.5vw, 14px);
+  letter-spacing: 2px;
   white-space: nowrap;
 
   text-shadow: 0 0 6px rgba(255,155,191,0.6);
-  pointer-events: none;
-
   animation: textFlow 8s linear infinite;
 }
 
@@ -69,7 +59,7 @@ body {
   to   { background-position: 300% 50%; }
 }
 
-/* ========== SNOW CANVAS ========== */
+/* ========== SNOW ========== */
 #snow {
   position: fixed;
   inset: 0;
@@ -80,15 +70,16 @@ body {
 /* ========== GREETING ========== */
 .greeting {
   position: fixed;
-  top: 20px;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
 
   font-size: clamp(14px, 4vw, 18px);
   letter-spacing: 3px;
   color: #fff;
-
   opacity: 0.9;
+
   text-shadow: 0 0 10px rgba(255,255,255,0.7);
   animation: floatText 5s ease-in-out infinite;
 }
@@ -101,20 +92,18 @@ body {
 /* ========== CREDIT ========== */
 .credit {
   position: fixed;
-  bottom: 16px;
+  bottom: env(safe-area-inset-bottom, 16px);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
 
   font-size: clamp(11px, 3vw, 13px);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255,255,255,0.6);
   letter-spacing: 1px;
-
   user-select: none;
-  pointer-events: none;
 }
 
 .credit span {
   color: #ff9bbf;
-  font-weight: 500;
   text-shadow: 0 0 6px rgba(255,155,191,0.6);
 }

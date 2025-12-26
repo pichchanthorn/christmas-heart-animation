@@ -3,47 +3,39 @@
 ================================ */
 const ui = document.getElementById("ui");
 
-// detect mobile
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-// tuned values
 const COUNT = isMobile ? 56 : 80;
 const SPEED = 0.001;
 
-// heart path ❤️
+// heart math ❤️
 function heart(t) {
-  const x = 16 * Math.pow(Math.sin(t), 3);
-  const y =
-    13 * Math.cos(t) -
-    5 * Math.cos(2 * t) -
-    2 * Math.cos(3 * t) -
-    Math.cos(4 * t);
-  return { x, y };
+  return {
+    x: 16 * Math.sin(t) ** 3,
+    y:
+      13 * Math.cos(t) -
+      5 * Math.cos(2 * t) -
+      2 * Math.cos(3 * t) -
+      Math.cos(4 * t)
+  };
 }
 
-// create text nodes
+// create texts
 const texts = [];
-
 for (let i = 0; i < COUNT; i++) {
   const el = document.createElement("div");
   el.className = "love";
   el.textContent = "I love you អូន";
   ui.appendChild(el);
 
-  texts.push({
-    el,
-    offset: (i / COUNT) * Math.PI * 2
-  });
+  texts.push({ el, offset: (i / COUNT) * Math.PI * 2 });
 }
 
 let time = 0;
 
 function animateHeart() {
-  const rect = ui.getBoundingClientRect();
-  const size = Math.min(rect.width, rect.height);
-
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
+  const size = Math.min(window.innerWidth, window.innerHeight);
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
   const scale = size / 42;
 
   time += SPEED;
@@ -65,23 +57,22 @@ animateHeart();
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 
-let w, h;
 function resizeSnow() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 resizeSnow();
 window.addEventListener("resize", resizeSnow);
 
 const flakes = Array.from({ length: 120 }, () => ({
-  x: Math.random() * w,
-  y: Math.random() * h,
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
   r: Math.random() * 2 + 1,
   d: Math.random() * 0.6 + 0.3
 }));
 
 function snowLoop() {
-  ctx.clearRect(0, 0, w, h);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "rgba(255,255,255,0.8)";
   ctx.beginPath();
 
@@ -89,9 +80,9 @@ function snowLoop() {
     ctx.moveTo(f.x, f.y);
     ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
     f.y += f.d;
-    if (f.y > h) {
+    if (f.y > canvas.height) {
       f.y = -5;
-      f.x = Math.random() * w;
+      f.x = Math.random() * canvas.width;
     }
   });
 
