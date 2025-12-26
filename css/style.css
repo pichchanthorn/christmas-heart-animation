@@ -1,0 +1,120 @@
+/* ========== RESET ========== */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* ========== BASE PAGE ========== */
+body {
+  background: #000;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Segoe UI", system-ui, sans-serif;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ========== HEART CONTAINER ========== */
+#ui {
+  position: relative;
+  width: min(90vw, 520px);
+  height: min(90vw, 520px);
+  z-index: 1;
+
+  /* subtle breathing glow */
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255,155,191,0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(255,155,191,0.8));
+  }
+}
+
+/* ========== LOVE TEXT ========== */
+.love {
+  position: absolute;
+
+  /* Gradient text */
+  background: linear-gradient(
+    90deg,
+    #ffb3c6,
+    #ff4d6d,
+    #ffd166,
+    #ffb3c6
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-size: clamp(11px, 1.8vw, 14px);
+  letter-spacing: clamp(1px, 0.4vw, 2px);
+  white-space: nowrap;
+
+  text-shadow: 0 0 6px rgba(255,155,191,0.6);
+  pointer-events: none;
+
+  animation: textFlow 8s linear infinite;
+}
+
+@keyframes textFlow {
+  from { background-position: 0% 50%; }
+  to   { background-position: 300% 50%; }
+}
+
+/* ========== SNOW CANVAS ========== */
+#snow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========== GREETING ========== */
+.greeting {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: clamp(14px, 4vw, 18px);
+  letter-spacing: 3px;
+  color: #fff;
+
+  opacity: 0.9;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7);
+  animation: floatText 5s ease-in-out infinite;
+}
+
+@keyframes floatText {
+  0%,100% { transform: translate(-50%, 0); }
+  50%     { transform: translate(-50%, -6px); }
+}
+
+/* ========== CREDIT ========== */
+.credit {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: clamp(11px, 3vw, 13px);
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+.credit span {
+  color: #ff9bbf;
+  font-weight: 500;
+  text-shadow: 0 0 6px rgba(255,155,191,0.6);
+}
